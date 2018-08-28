@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:andriod="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.android.sunnyrain.app.MainActivity">
+    <group andriod:checkableBehavior="single" >
+        <item
+            andriod:id="@+id/action_refresh"
+            andriod:title="@string/action_refresh"/>
+
+    </group>
+</menu>
