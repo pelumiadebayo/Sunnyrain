@@ -1,0 +1,15 @@
+<resources>
+    <array name="pref_units_values">
+        <item name="pref_units_metric">metric</item>
+        <item name="pref_units_imperial">imperial</item>
+    </array>
+
+    <string-array name="pref_units_options">
+        <item name="pref_units_metric">metric</item>
+        <item name="pref_units_imperial">imperial</item>
+    </string-array>
+
+</resources>
+
+
+

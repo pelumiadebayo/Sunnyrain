@@ -2,14 +2,11 @@
 <menu xmlns:andriod="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context="com.example.android.sunnyrain.app.MainActivity">
     <group andriod:checkableBehavior="single" >
         <item
-            andriod:id="@+id/action_settings"
-            android:title="@string/action_settings" />
-        <item
-            andriod:id="@+id/action_map"
-            android:title="@string/action_map" />
+            andriod:id="@+id/action_detail"
+            andriod:title="@string/title_activity_detail"/>
+
     </group>
 </menu>
