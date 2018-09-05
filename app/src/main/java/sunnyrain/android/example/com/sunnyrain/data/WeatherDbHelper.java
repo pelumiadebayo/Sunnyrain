@@ -7,7 +7,7 @@ import sunnyrain.android.example.com.sunnyrain.data.WeatherContract.LocationEntr
 import sunnyrain.android.example.com.sunnyrain.data.WeatherContract.WeatherEntry;
 
 
-public abstract class WeatherDbHelper extends SQLiteOpenHelper {
+public class WeatherDbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION =1;
     public  static final String DATABASE_NAME = "weather.db";
     public WeatherDbHelper(Context context) {
