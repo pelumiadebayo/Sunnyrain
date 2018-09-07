@@ -1,9 +1,22 @@
 package sunnyrain.android.example.com.sunnyrain.data;
 
+import android.content.ContentUris;
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 public class WeatherContract {
+    public static  final String CONTENT_AUTHORITY = "sunnyrain.android.example.com.sunnyrain";
+    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+    public static final String PATH_WEATHER= "weather";
+    public static final String PATH_LOCATION= "location";
+
     public static final class LocationEntry implements BaseColumns{
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_LOCATION).build();
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/"
+                + CONTENT_AUTHORITY + "/" + PATH_LOCATION;
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/"
+                + CONTENT_AUTHORITY + "/" + PATH_LOCATION;
         //table name
         public static final String TABLE_NAME = "location";
         //location query to the API from settings
@@ -13,8 +26,18 @@ public class WeatherContract {
         //longitude and latitude from APi to pinpoint the exact location from the map
         public static final String COLUMN_COORD_LAT = "coord_lat";
         public static final String COLUMN_COORD_LONG = "coord_long";
+        public static Uri buildLocationUri(long id){
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
     }
+
     public static final class WeatherEntry implements BaseColumns{
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_WEATHER).build();
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/"
+                + CONTENT_AUTHORITY + "/" + PATH_WEATHER;
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/"
+                + CONTENT_AUTHORITY + "/" + PATH_WEATHER;
         //table name
         public static final String TABLE_NAME = "weather";
         //column with foreign key into the location table
@@ -35,6 +58,29 @@ public class WeatherContract {
         public static final String COLUMN_WIND_SPEED = "wind";
         //meteorological degrees stored as float
         public static final String COLUMN_DEGREES = "degrees";
+
+        public static Uri buildWeatherUri(long id){
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+        public  static final Uri buildWeatherLocation(String locationSettings){
+            return  CONTENT_URI.buildUpon().appendPath(locationSettings).build();
+        }
+        public static Uri buildWeatherLocationWithStartDate(String locationSettings, String startDate){
+            return  CONTENT_URI.buildUpon().appendPath(locationSettings)
+                    .appendQueryParameter(COLUMN_DATETEXT, startDate).build();
+        }
+        public static Uri buildWeatherLocationWithDate(String locationSettings, String date){
+            return  CONTENT_URI.buildUpon().appendPath(locationSettings).appendPath(date).build();
+        }
+        public static String getWeatherLocationFromUri(Uri uri){
+            return  uri.getPathSegments().get(1);
+        }
+        public static String getDateFromUri(Uri uri){
+            return  uri.getPathSegments().get(2);
+        }
+        public static String getStartDateFromUri(Uri uri){
+            return  uri.getQueryParameter(COLUMN_DATETEXT);
+        }
     }
 
 }
