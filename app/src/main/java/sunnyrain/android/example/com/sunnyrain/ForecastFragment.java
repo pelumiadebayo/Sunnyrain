@@ -66,7 +66,11 @@ public class ForecastFragment extends Fragment {
     }
     private void updateWeather(){
         FetchWeatherTask  weatherTask = new FetchWeatherTask();
+        //reading from shared preferences
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        /*since there are two key value pairs (the key value and the default value), we get the
+        * value stored for the location key, if there is no value stored, we fall back to the default
+        */
         String location = prefs.getString(getString(R.string.pref_location_key),
                 getString(R.string.pref_location_default));
         weatherTask.execute(location);
@@ -107,9 +111,9 @@ public class ForecastFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    String forcast = mForecastAdapter.getItem(position);
+                    String forecast = mForecastAdapter.getItem(position);
                     Intent intent = new Intent(getActivity(), DetailActivity.class)
-                            .putExtra(Intent.EXTRA_TEXT, forcast);
+                            .putExtra(Intent.EXTRA_TEXT, forecast);
                     startActivity(intent);
                 }
             });
@@ -133,6 +137,7 @@ public class ForecastFragment extends Fragment {
          * Prepare the weather high/lows for presentation.
          */
         private String formatHighLows(double high, double low) {
+            //reading from shared preferences
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
             String unitsType = sharedPrefs.getString(getString(R.string.pref_unit_key),
                     getString(R.string.pref_units_default));

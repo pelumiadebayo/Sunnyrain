@@ -45,12 +45,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void  openPreferenceLocationInMap(){
+        //reading from shared preferences
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String location = prefs.getString(getString(R.string.pref_location_key),
                 getString(R.string.pref_location_default));
+        //using the uri builder for showing location found on the intent
         Uri geoLocation = Uri.parse("geo:0,0?").buildUpon().appendQueryParameter("q", location).build();
+        //intent to lauch the map app
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(geoLocation);
+        //start the intent activity if it resolve successfully
         if (intent.resolveActivity(getPackageManager()) !=null){
             startActivity(intent);
         }else {

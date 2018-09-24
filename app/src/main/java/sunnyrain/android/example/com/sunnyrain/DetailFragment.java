@@ -53,11 +53,10 @@ private static final String LOG_TAG= DetailFragment.class.getSimpleName();
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.detailfragment, menu);
         MenuItem menuItem = menu.findItem(R.id.action_share);
-
         //provider to change the share intent
         ShareActionProvider mshareActionProvider = (ShareActionProvider)
                 MenuItemCompat.getActionProvider(menuItem);
-
+        //attaching an intent to the shareActionProvider
         if (mshareActionProvider != null){
             mshareActionProvider.setShareIntent(createShareForecastIntent());
         }else {

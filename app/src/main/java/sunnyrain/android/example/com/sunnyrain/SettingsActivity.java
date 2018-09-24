@@ -20,11 +20,15 @@ public class SettingsActivity extends PreferenceActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.pref_general);
+        //binding the onchange listener on the settings key
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_location_key)));
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_unit_key)));
     }
+
+    //on change listerner on the preference value
     private  void bindPreferenceSummaryToValue(Preference preference){
     preference.setOnPreferenceChangeListener(this);
+        //trigers the listener with the preference current value
         onPreferenceChange(preference,
                 PreferenceManager.getDefaultSharedPreferences(preference.getContext())
                         .getString(preference.getKey(), ""));

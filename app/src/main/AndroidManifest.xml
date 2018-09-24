@@ -38,6 +38,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="sunnyrain.android.example.com.sunnyrain.MainActivity" />
         </activity>
+        <Provider
+            android:authorities="sunnyrain.android.example.com.sunnyrain"
+            android:name=".data.WeatherProvider"/>
     </application>
 
 </manifest>

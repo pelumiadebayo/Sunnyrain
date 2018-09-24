@@ -5,39 +5,51 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 
 public class WeatherContract {
+
     public static  final String CONTENT_AUTHORITY = "sunnyrain.android.example.com.sunnyrain";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     public static final String PATH_WEATHER= "weather";
     public static final String PATH_LOCATION= "location";
 
+    //the inner class that define the table content of the location table
     public static final class LocationEntry implements BaseColumns{
+
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_LOCATION).build();
+        //uri that returns list of items
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/"
                 + CONTENT_AUTHORITY + "/" + PATH_LOCATION;
+        //uri that returns a single item
         public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/"
                 + CONTENT_AUTHORITY + "/" + PATH_LOCATION;
+
         //table name
         public static final String TABLE_NAME = "location";
         //location query to the API from settings
         public static final String COLUMN_LOCATION_SETTING = "location_settings";
-        //readable location string(lagos onstaed of 100242)
+        //readable location string(lagos instead of 100242)
         public static final String COLUMN_CITY_NAME = "city_name";
         //longitude and latitude from APi to pinpoint the exact location from the map
         public static final String COLUMN_COORD_LAT = "coord_lat";
         public static final String COLUMN_COORD_LONG = "coord_long";
+
         public static Uri buildLocationUri(long id){
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }
 
+    //the inner class that define the table content of the location table
     public static final class WeatherEntry implements BaseColumns{
+
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_WEATHER).build();
+        //uri that returns list of items
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/"
                 + CONTENT_AUTHORITY + "/" + PATH_WEATHER;
+        //uri that returns a single item
         public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/"
                 + CONTENT_AUTHORITY + "/" + PATH_WEATHER;
+
         //table name
         public static final String TABLE_NAME = "weather";
         //column with foreign key into the location table
@@ -59,6 +71,7 @@ public class WeatherContract {
         //meteorological degrees stored as float
         public static final String COLUMN_DEGREES = "degrees";
 
+        //uri builder
         public static Uri buildWeatherUri(long id){
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
